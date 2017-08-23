@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        function css(){
+            if(arguments.length==2){//获取
+                return arguments[0].style[arguments[1]];
+            }
+            else{
+                arguments[0].style[arguments[1]]=arguments[2];//设置
+            }
+        }
+        window.onload=function(){
+            var oDiv=document.getElementById('div1');
+            //alert(css(oDiv,'width')); //获取
+            css(oDiv,'background','green'); //设置
+
+        }
+    </script>
+</head>
+<body>
+<div id="div1" style="width:200px; height:200px; background:red;"></div>
+</body>
+</html>
+<!--css(oDiv,'width')-> 获取样式
+<!--css(oDiv,'width','200px')-> 设置样式

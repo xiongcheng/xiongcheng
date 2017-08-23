@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+     var arr=[12,8,6,99];//给数字排序
+      //arr.sort();//默认下，把数字当成字符串来处理
+     //或者
+    // alert(arr);
+     //想办法让sort认识字符串以外的东西进行比较
+    arr.sort(function(n1,n2){
+//        另一种简单方法
+        return n1-n2;
+        /*
+        if(n1<n2){
+            return -1;
+
+        }
+        else if(n1>n2){
+            return 1;
+        }
+        else{
+            return 0;
+        }
+         */
+    })
+
+
+
+
+     alert(arr);
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

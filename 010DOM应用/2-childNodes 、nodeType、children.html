@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        window.onload=function(){
+            var oUl=document.getElementById('ul1');
+            //alert(oUl.childNodes.length);  5个把文本节点也包括进去  IE6-8是没有问题的
+
+            //nodeType  节点类型
+//            oUl.childNodes.nodeType==3   ->文本节点
+//            oUl.childNodes.nodeType==1   ->元素节点
+
+            for( var i=0; i<oUl.childNodes.length;i++){
+                if(oUl.childNodes[i].nodeType==1){
+                    oUl.childNodes[i].style.background='red';  //将childNodes和nodeType配合使用就能兼容所有浏览器，只获取元素节点
+                }
+            }
+
+            //另外还有个神奇的children属性  也是获取节点，并且只获取元素节点，不获取文本节点
+           // alert(oUl.children.length);
+            for(var i=0;i<oUl.children.length;i++){
+                oUl.children[i].style.background='red';
+
+            }
+
+        };
+    </script>
+</head>
+<body>
+<ul id="ul1">
+    <li></li>
+    <li></li>
+</ul>
+</body>
+</html>

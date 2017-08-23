@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>for循环语句</title>
+</head>
+<body>
+<p>点击按钮循环代码5次</p>
+<button onclick="myFunction()">点击这里</button>
+<p id="demo"></p>
+<script>
+//    不同类型的循环
+//
+//    JavaScript 支持不同类型的循环：
+//
+//    for - 循环代码块一定的次数
+//    for/in - 循环遍历对象的属性
+//    while - 当指定的条件为 true 时循环指定的代码块
+//    do/while - 同样当指定的条件为 true 时循环指定的代码块
+
+    function myFunction(){
+       var x="";
+       for(var i=0;i<5;i++){
+           x=x + "该数字为" + i+ "<br>";
+       }
+       document.getElementById("demo").innerHTML=x;
+    }
+</script>
+</body>
+
+</html>
+

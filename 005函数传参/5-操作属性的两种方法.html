@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        function setText(name){
+           // var a='value';
+            var oTxt=document.getElementById('txt1');
+            //第一种操作属性的方法
+            //oTxt.value='adafbfgsg';
+            //第二种操作属性的方法
+            oTxt[name]='ddddddgdgdg';
+          //好处：具体属性的名字,可以随意去指定，随意去变；
+        };
+    </script>
+</head>
+<body>
+<input id="txt1" type="text" >
+<input type="button" value="改变文字" onclick="setText('value')">
+</body>
+</html>
+<!--改变Div的任意样式-->
+<!--操纵属性的第二种方式-->
+<!--什么时候用：要修改的属性不固定-->
+<!--字符串和变量--区别和关系-->
+
+<!--将属性名作为参数传递-->

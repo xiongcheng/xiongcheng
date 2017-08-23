@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>选项卡</title>
+    <style>
+        #div1 .active{
+         background:yellow;
+        }
+        #div1 div{
+            width:200px;
+            height:200px;
+            background:#ccc;
+            border:1px solid #999;
+            display:none;
+        }
+    </style>
+    <script>
+       window.onload=function(){
+         var oDiv=document.getElementById('div1');
+         var aBtn=oDiv.getElementsByTagName('input');
+         var aDiv= oDiv.getElementsByTagName('div');
+         for(var i=0; i<aBtn.length; i++){
+             aBtn[i].index=i;//按钮控制div的显示顺序
+             aBtn[i].onclick=function(){
+               //alert(this.value);
+                 for(var i=0; i<aBtn.length;i++){
+                     aBtn[i].className='';//目的开始让所有的input样式为空（这样做才能让点击另一个按钮，前面一个按钮的样式消失），让当前的样式显示出来
+                     aDiv[i].style.display='none';//目的开始让所有div都隐藏，让当前的div显示出来
+                 }
+                 this.className='active';
+                 //alert(this.index);
+                 aDiv[this.index].style.display='block';
+
+             };
+         }
+
+       };
+    </script>
+</head>
+<body>
+ <div id="div1">
+     <!--//this.index理解为按钮的序号-->
+     <input class="active" type="button" value="教育" >
+     <input type="button" value="培训" >
+     <input type="button" value="招生">
+     <input type="button" value="出国" >
+     <div style="display:block;" >1111</div>
+     <div>2222</div>
+     <div>3333</div>
+     <div>4444</div>
+ </div>
+</body>
+</html>
+<!--this当前发生事件的元素-->
+<!--先把所有的都隐藏，再把当前的显示出来-->
+<!--index索引值-->

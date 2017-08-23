@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+        #div1{
+            width:1200px;
+            height:300px;
+            margin:200px auto;
+            position:relative;
+            background:#ff0;
+            overflow:hidden;
+
+        }
+        #div1 ul{
+            position:absolute;
+            left:0;
+            top:0;
+        }
+        #div1 ul li {
+            float:left;
+            width:300px;
+            height:300px;
+            list-style:none;
+        }
+        img{
+            width:300px;
+            height:300px;
+        }
+    </style>
+    <script>
+        window.onload=function(){
+          var oDiv=document.getElementById('div1');
+          var oUl=oDiv.getElementsByTagName('ul')[0];
+          var aLi=oUl.getElementsByTagName('li');
+          var speed=2;//控制滚动方向和速度
+          oUl.innerHTML=oUl.innerHTML+oUl.innerHTML;//复制一份
+          oUl.style.width=aLi[0].offsetWidth*aLi.length+'px';//定义ul的宽度
+
+            function move(){ //将定时器中的函数提出来，并给函数命名
+                if(oUl.offsetLeft<-oUl.offsetWidth/2){
+                    oUl.style.left='0';
+                }  //从右向左动
+                if(oUl.offsetLeft>0){
+                    oUl.style.left=-oUl.offsetWidth/2 +'px';
+                }//从左向右动
+
+                oUl.style.left=oUl.offsetLeft+speed+'px';//让图片向左向右动起来
+            }
+
+       var timer= setInterval(move,30);  //定义一个timer给定时器存起来
+
+
+       oDiv.onmousemove=function(){
+           clearInterval(timer);//关闭定时器
+       };
+       oDiv.onmouseout=function(){
+
+           timer=setInterval(move,30);//启动定时器
+       };
+       document.getElementsByTagName('a')[0].onclick=function(){
+           speed=-2;
+       };
+       document.getElementsByTagName('a')[1].onclick=function(){
+           speed=2;
+       };
+        };
+    </script>
+</head>
+<body>
+<a href="">向左走</a>
+<a href="">向右走</a>
+<div id="div1">
+    <ul>
+        <li>
+            <img src="../img/view1.jpg" >
+        </li>
+        <li>
+            <img src="../img/view2.jpg" >
+        </li>
+        <li>
+            <img src="../img/view3.jpg" >
+        </li>
+        <li>
+            <img src="../img/view4.jpg" >
+        </li>
+    </ul>
+</div>
+</body>
+</html>

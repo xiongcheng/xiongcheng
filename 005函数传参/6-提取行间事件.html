@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>提取行间事件</title>
+    <script>
+        window.onload=function(){      //页面加载完成时发生
+            var oBtn=document.getElementById('btn1');
+            //不在函数后面取名，这样的函数称之为匿名函数
+            oBtn.onclick=function(){
+                alert('a');
+            };
+        };
+
+    </script>
+</head>
+<body>
+<input type="button" id="btn1" value="按钮">
+
+</body>
+</html>
+<!--提取事件-->
+<!--为元素添加事件-->
+<!--事件和其他的属性一样，都可以加JS添加-->
+<!--弄懂window.onload的意思-->
+<!--行为，样式，结构三者分离-->

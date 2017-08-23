@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+#div1{
+    width:200px; height:200px; background:red; position:absolute; left:0; top:150px;
+}
+    </style>
+    <script>
+     setInterval(function(){
+         var oDiv=document.getElementById('div1');
+         oDiv.style.left=oDiv.offsetLeft+10+'px';  //每隔一段时间，让物体的左边距增大10px，物体就能向左滚动
+     },30);
+    </script>
+</head>
+<body>
+<div id="div1" onclick="alert(this.offsetLeft);"></div>
+</body>
+</html>

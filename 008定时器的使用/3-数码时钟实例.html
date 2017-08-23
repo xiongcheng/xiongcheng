@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        img{
+            width:100px;
+            height:100px;
+        }
+    </style>
+    <script>
+        var oDate=new Date();//创建一个时间对象
+        //alert(oDate.getHours()); //获取系统的时间/小时
+
+        //补零
+        function toDou(n){
+            if(n<10){
+                return '0'+n;
+            }
+            else{
+                return ''+n;
+            }
+        }
+
+
+        //怎么通过js获取图片的路径
+       window.onload=function(){
+
+           var aImg=document.getElementsByTagName('img');
+           //var str='012321'; //只需要修改字符串，就能控制显示的时间,目前这个字符串是写死的
+           //接下来创建一个时间对象，来获取系统的时间
+           var oDate=new Date();
+           var str=toDou(oDate.getHours()) + toDou(oDate.getMinutes()) + toDou(oDate.getSeconds()); //给时分秒补零，并转化为字符串
+             //alert(str);
+
+           for(var i=0;i<aImg.length;i++){
+               aImg[i].src='../img/'+str[i]+'.jpg';
+           }
+
+       };
+
+    </script>
+</head>
+<body>
+<img src="../img/0.jpg" >
+<img src="../img/0.jpg" >
+：
+<img src="../img/0.jpg" >
+<img src="../img/0.jpg" >
+：
+<img src="../img/0.jpg" >
+<img src="../img/0.jpg" >
+</body>
+</html>

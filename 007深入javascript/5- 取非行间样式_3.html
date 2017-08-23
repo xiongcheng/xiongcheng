@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+ #div1{
+     width:200px; height:200px; background:red;
+ }
+    </style>
+    <script>
+        window.onload=function(){
+           var oDiv=document.getElementById('div1');
+           //alert(oDiv.style.width);//只能获取行间样式
+            //currentStyle不兼容，只能兼容IE
+           // alert(oDiv.currentStyle.width);
+
+            //Chrome、FF getComputedStyle有两个参数，第一个参数，是你要获取物体的样式，第二个参数随便填内容
+           // alert(getComputedStyle(oDiv,false).width);
+
+            //alert(oDiv.currentStyle);//在IE上不为空，布朗值为true； 在chrom、FF上为undefined,布朗值为false
+            //接下来做一个兼容性处理，
+            if(oDiv.currentStyle){
+                //IE
+                alert(oDiv.currentStyle.width);
+            }
+            else{
+                //chrome,FF
+                alert(getComputedStyle(oDiv,false).width);
+
+            }
+
+        };
+    </script>
+</head>
+<body>
+<div id="div1" ></div>
+</body>
+</html>
+<!--css(oDiv,'width')-> 获取样式
+<!--css(oDiv,'width','200px')-> 设置样式
