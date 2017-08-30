@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+  div{width:100px;height:50px; background:red;margin:10px;}
+    </style>
+    <script>
+        window.onload=function(){
+          aDiv=document.getElementsByTagName('div');
+          for(var i=0;i<aDiv.length;i++){
+            aDiv[i].onmouseover=function(){
+             starMove(this,400);
+            };
+            aDiv[i].onmouseout=function(){
+             starMove(this,100);
+            };
+          }
+        };
+        var timer=null
+        function starMove(obj,target){
+         clearInterval(timer);
+         timer=setInterval(function(){
+             var speed=(target);
+
+         },30);
+        }
+    </script>
+</head>
+<body>
+<div></div>
+<div></div>
+<div></div>
+</body>
+</html>

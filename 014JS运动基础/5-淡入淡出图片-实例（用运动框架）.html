@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+        #div1{
+            width:150px;height:200px; background:green; opacity:0.5;
+        }
+    </style>
+    <script>
+        window.onload=function(){
+            var oDiv=document.getElementById('div1');
+            oDiv.onmouseover=function(){
+                startmove(100);
+            };
+
+            oDiv.onmouseout=function(){
+                startmove(50);
+            };
+
+
+
+
+//            物体向左和向右运动的函数大体相同，就是运动的速度方向和关闭定时器，停止的位置（speed，是target）
+         //var opacity=0.5;
+
+         var alpha=50;  //处理变量
+         var timer=unll;
+         //图片淡入淡出，opacity没办法取出来，就利用opcity变化的值
+        function startmove(target){   //构造一个运动的函数框架
+          clearInterval(timer);  //先关闭定时器
+          timer=setInterval(function(){   //再重新开一个定时器
+              var speed=0;
+             if(alpha<target){  //当透明度的值小于目标值
+                 speed=10;
+             }
+             else{
+                 speed=-10;
+             }
+
+              if(alpha==target){  //opacity的值在改变，当达到目标值，就关闭定时器
+                 clearInterval(timer);
+             }
+             else{  //否则opcity的就增大
+                  alpha+=speed; //到目前为止，变化的并不是物体本身的亮度，而是透明度的变化
+                  oDiv.style.opacity=alpha/100;
+             }
+          },30);
+        }
+        };
+    </script>
+</head>
+<body>
+<div id="div1">
+</div>
+</body>
+</html>

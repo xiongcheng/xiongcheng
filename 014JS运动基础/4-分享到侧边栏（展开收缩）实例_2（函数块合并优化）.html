@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+        #div1{
+            width:150px;height:200px; background:green; position:relative;
+           left:-150px;
+        }
+        #div1 span{
+            width:20px;height:60px; line-height:20px; background:gold; position:absolute;
+            right:-20px; top:70px;
+        }
+    </style>
+    <script>
+        window.onload=function(){
+            var oDiv=document.getElementById('div1');
+            oDiv.onmouseover=function(){
+                startmove(0);
+            };
+
+            oDiv.onmouseout=function(){
+                startmove(-150);
+            };
+
+
+
+
+//            物体向左和向右运动的函数大体相同，就是运动的速度方向和关闭定时器，停止的位置（speed，是target）
+
+         var timer=unll;
+         //物体向左向右运动,将改变的值，抽离出来，作为参数
+        function startmove(target){   //构造一个运动的函数框架
+          clearInterval(timer);  //先关闭定时器
+          timer=setInterval(function(){   //再重新开一个定时器
+             if(oDiv.offsetLeft<target){
+                 speed=10;
+             }
+             else{
+                 speed=-10;
+             }
+
+              if(oDiv.offsetLeft==target){  //物体运动到指定位置，关闭定时器
+                 clearInterval(timer);
+             }
+             else{  //否则就向右匀速运动
+                 oDiv.style.left=oDiv.offsetLeft+speed+'px';
+             }
+          },30);
+        }
+        };
+    </script>
+</head>
+<body>
+<div id="div1">
+    <span>分享</span>
+</div>
+</body>
+</html>

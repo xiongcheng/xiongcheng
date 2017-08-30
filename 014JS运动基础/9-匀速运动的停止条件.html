@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #div1{
+            width:100px; height:100px; background:red;  position: absolute; left:600px; top:60px;
+        }
+        #div2{
+            width:1px; height:600px; background:black;  position: absolute; left:100px; top:0;
+        }
+        #div3{
+            width:1px; height:600px; background:black;  position: absolute; left:300px; top:0;
+        }
+    </style>
+    <script>
+        var timer=null
+ function starMove(target){
+     var oDiv=document.getElementById('div1');
+     clearInterval(timer);
+     timer=setInterval(function(){
+         var speed=0;
+      if(oDiv.offsetLeft<target){
+        speed=7;
+      }
+      else{
+        speed=-7;
+      }
+
+
+      if(Math.abs(target-oDiv.offsetLeft)<=7){
+          clearInterval(timer);
+          oDiv.style.left=target+'px';
+      }
+      else{
+          oDiv.style.left=oDiv.offsetLeft+speed+'px';
+      }
+     },30);
+ }
+    </script>
+</head>
+<body>
+<input type="button"  value="到100" onclick="starMove(100)">
+<input type="button"  value="到300" onclick="starMove(300)">
+<div id="div1">
+</div>
+<div id="div2">
+</div>
+<div id="div3">
+</div>
+</body>
+</html>
