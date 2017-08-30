@@ -1,0 +1,159 @@
+*{
+    margin:0;
+    padding:0;
+}
+
+p,i,em{
+    font-style:normal;
+}
+
+li{
+    list-style:none;
+}
+.bg_white{
+    background-color:#fff;
+}
+.sd_content{
+    width:1200px;
+    margin:0 auto;
+    height:800px;
+    overflow:hidden;
+}
+.dash_board ul{
+    display:block;
+    overflow:hidden;
+}
+.dash_board li{
+    float:left;
+    width:290px;
+    margin-top:60px;
+    margin-right:20px;
+    text-align:center;
+
+}
+.sd_yi_biao_pan{
+    width:200px;
+    margin:0 auto;
+    height:100px;
+    position:relative;
+    overflow:hidden;
+}
+.sd_bordrs_bar1 {
+    position:absolute;
+    overflow:hidden;
+    bottom:0;
+
+
+}
+
+/*//border1和border2分别表示两个半圆*/
+
+/*上半圆*/
+.border1{
+    width:200px;
+    height:100px;
+    background-color:#dcdcdc;
+    border-radius:100px 100px 0 0;
+    //z-index: 1;
+}
+
+/*下半圆*/
+.border2{
+    left:0;
+    top:100px;
+    width:200px;
+    height:100px;
+    background:linear-gradient(to left,#ff6e00, #ffbe00);
+    border-radius: 0 0 100px 100px;
+    transform-origin:center top;      //移动半圆的位置
+    z-index:2;
+}
+
+.sd-bordrs-bar2{
+    background:linear-gradient(to left,#879cea, #b7c5f9);
+}
+
+.sd-bordrs-bar3{
+    background: linear-gradient(to left, #07a7de, #00beff);
+}
+
+
+/*上半圆的空白部分*/
+.border3{
+    left:15px;
+    width:170px;
+    height:85px;
+    background-color:#fff;
+    border-radius:85px 85px 0 0;
+    z-index:3;
+}
+
+.sd_zhizhen_box{
+    width:12px;
+    height:62px;
+    position:absolute;
+    left:94px;
+    bottom:0;
+    transform:rotate(-90deg);
+    transform-origin:bottom center;
+    z-index:4;
+}
+
+.sd_zhizhen{
+    position:absolute;
+    left:0;
+    bottom:0;
+    width:12px;
+    height:62px;
+    transform-origin:bottom center;
+    animation:progress-rotate 1s linear;
+
+}
+
+@keyframes progress-rotate{
+  0% {
+    transform:rotate(0deg);
+  }
+}
+
+.sd_zhizhen1{
+    background:url("../img/zhen1.png") no-repeat;
+}
+.sd_zhizhen2{
+    background:url("../img/zhen2.png") no-repeat;
+}
+
+.sd_zhizhen3{
+    background:url("../img/zhen3.png") no-repeat;
+}
+
+.sdPre_yibiao_num{
+    margin:24px auto 10px;
+    font-size:34px;
+    font-weight:bold;
+}
+.sdPre_yibiao_txt{
+    font-weight:normal;
+    font-size:24px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

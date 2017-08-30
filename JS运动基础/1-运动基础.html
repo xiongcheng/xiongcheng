@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+       #div1{
+           width:200px;height:200px; background:red; position:absolute; top:50px; left:0;
+       }
+    </style>
+    <script>
+        window.onload=function(){
+          var timer=null;
+          var speed=10;
+          var oBtn=document.getElementById('btn1');
+          var oDiv=document.getElementById('div1');
+            oBtn.onclick=function(){
+                clearInterval(timer);   //作用是把之前开着的定时器关闭，再开一个新的定时器，保证每次只有一个定时器开着，这样不管点击多少次按钮，物体运动速度不变
+            timer=setInterval(function(){  //定时器的作用就是让物体自己运动，每隔30ms
+                  if(oDiv.offsetLeft>=300){ //物体运动到300px，自己就停下来
+                      clearInterval(timer);
+                  }
+                  else{
+                      oDiv.style.left=oDiv.offsetLeft+speed+'px';
+                  }
+
+
+              },30);
+
+          };
+        };
+    </script>
+</head>
+<body>
+<input type="button" value="移动" id="btn1">
+<div id="div1"></div>
+</body>
+</html>

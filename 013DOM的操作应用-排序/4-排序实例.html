@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+       #ul1{
+           background:green;
+       }
+    </style>
+    <script>
+        window.onload=function(){
+          var oUl1=document.getElementById('ul1');
+          var oBtn=document.getElementById('btn');
+          oBtn.onclick=function(){
+            var aLi=oUl1.getElementsByTagName('li');
+//            aLi 并不是真正意义上的数组，是元素集合
+              var arr=[];
+              for(var i=0;i<aLi.length;i++){
+                  arr[i]=aLi[i];
+              }
+//sort()里面包含着比较函数  function compare (li1,li2){}; 比较的是li里面的innerHTML
+              arr.sort(function(li1,li2){  //我们排序的只是arr这个数组，li的位置没有任何变化
+                var n1=parseInt(li1.innerHTML);
+                var n2=parseInt(li2.innerHTML);
+                return n1-n2;
+              });
+
+             // alert(arr[1].innerHTML); 查看arr数组按照顺序依次弹出
+              for(var i=0;i<arr.length;i++){ //将排好序的数组全部apendChild插入oul1一次，这样就完成了oul1中li的排序
+                  alert('该把'+arr[i].innerHTML+'插到最后');
+                  oUl1.appendChild(arr[i]);
+              }
+
+          };
+        };
+
+    </script>
+</head>
+<body>
+<input type="button" id="btn" value="排序">
+<ul id="ul1">
+    <li>23</li>
+    <li>99</li>
+    <li>6</li>
+    <li>54</li>
+    <li>11</li>
+</ul>
+
+</body>
+</html>

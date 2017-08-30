@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+       #ul1{
+           background:green;
+       }
+        #ul2{
+            background:yellow;
+        }
+    </style>
+    <script>
+        window.onload=function(){
+          var oUl1=document.getElementById('ul1');
+          var oBtn=document.getElementById('btn');
+          oBtn.onclick=function(){
+            var oLi=oUl1.children[0];
+            oUl1.appendChild(oLi); //1.先把元素从原有父级上删掉 2.添加到新的父级上
+          };
+        };
+
+    </script>
+</head>
+<body>
+<input type="button" id="btn" value="移动">
+<ul id="ul1">
+    <li>1</li>
+    <li>2</li>
+    <li>3</li>
+    <li>4</li>
+    <li>5</li>
+</ul>
+
+</body>
+</html>

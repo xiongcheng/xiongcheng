@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>表格搜索</title>
+    <script>
+        window.onload=function(){
+          var oTxt=document.getElementById('name');
+          var oBtn=document.getElementById('btn1');
+          var oTab=document.getElementById('tab1');
+          oBtn.onclick=function(){
+              for(var i=0;i<oTab.tBodies[0].rows.length; i++){
+                  var sTab=oTab.tBodies[0].rows[i].cells[1].innerHTML;
+                  var sTxt=oTxt.value
+                 if(sTab.toLowerCase()==sTxt.toLowerCase()){
+                     oTab.tBodies[0].rows[i].style.background='yellow';
+                 }
+                 else{
+                     oTab.tBodies[0].rows[i].style.background='';
+                 }
+
+              }
+          };
+
+        };
+    </script>
+</head>
+<body>
+姓名 <input type="text" id="name">
+<input type="button" value="搜索" id="btn1">
+<table  border="1" id="tab1" width="500px;">
+    <thead>
+    <tr>
+        <td>序号</td>
+        <td>姓名</td>
+        <td>年龄</td>
+        <td>操作</td>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>1</td>
+        <td>Blue</td>
+        <td>24</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>赵四</td>
+        <td>27</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>3</td>
+        <td>王峰</td>
+        <td>25</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>4</td>
+        <td>王五</td>
+        <td>34</td>
+        <td></td>
+    </tr>
+    </tbody>
+</table>
+
+<div>
+    搜索<br>
+    版本1：基础版本---字符串比较<br>
+    版本2：忽略大小写---大小写转换<br>
+    版本3：模糊搜索--search的使用<br>
+    版本4：多关键词---spilt<br>
+    高亮显示、筛选<br>
+
+    排序<br>
+    移动Li<br>
+    元素排序：转换---排序---插入<br>
+</div>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

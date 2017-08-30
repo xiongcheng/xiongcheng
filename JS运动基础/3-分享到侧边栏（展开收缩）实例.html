@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+        #div1{
+            width:150px;height:200px; background:green; position:relative;
+           /*left:-150px;*/
+        }
+        #div1 span{
+            width:20px;height:60px; line-height:20px; background:gold; position:absolute;
+            right:-20px; top:70px;
+        }
+    </style>
+    <script>
+        window.onload=function(){
+            var oDiv=document.getElementById('div1');
+            oDiv.onmouseover=function(){
+                oDiv.style.left=-150+'px';
+            };
+
+        };
+    </script>
+</head>
+<body>
+<div id="div1">
+    <span>分享</span>
+</div>
+</body>
+</html>
