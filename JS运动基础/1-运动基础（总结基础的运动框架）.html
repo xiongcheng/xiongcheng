@@ -27,6 +27,23 @@
 
               },30);
 
+                /*************************/
+//            根据这个例子总结出基本的运动框架
+                var timer=null;
+                function startmove(){
+                    var oDiv=document.getElementById('div');
+                    clearInterval(timer);
+                    timer=setInterval(function(){
+                        if(oDiv.offsetLeft>=300){
+                            clearInterval(timer);
+                        }
+                        else{
+                            oDiv.style.left=oDiv.offsetLeft+10+'px';
+                        }
+
+                    },30);
+                }
+              /*************************/
           };
         };
     </script>
