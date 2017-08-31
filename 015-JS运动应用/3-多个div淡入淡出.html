@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+div{
+    width:200px; height:200px;float:left; background:red;opacity:0.3;margin:10px;
+}
+    </style>
+    <script>
+        window.onload=function(){
+          var aDiv=document.getElementsByTagName('div');
+          for(var i=0;i<aDiv.length;i++){
+              aDiv[i].alpha=30;
+              aDiv[i].timer=null;
+              aDiv[i].onmouseover=function(){
+                  startMove(this,100);
+              };
+              aDiv[i].onmouseout=function(){
+                  startMove(this,30);
+              };
+          }
+        };
+        //var alpha=30;  只要是多物体运动，都不能公用东西
+        function startMove(obj,target){//告诉这个框架，变化的是哪一个物体
+            clearInterval(obj.timer);
+            obj.timer=setInterval(function(){   //后面速度的取值都是仿照缓冲运动，速度取值的方法
+                var speed=(target-obj.alpha);
+                speed=speed>0?Math.ceil(speed):Math.floor(speed);
+
+                if(obj.alpha==target){
+                    clearInterval(obj.timer);
+                }
+                else{
+                    obj.alpha+=speed;
+                    obj.style.opacity=obj.alpha/100;
+                }
+
+            },30);
+
+
+        }
+    </script>
+</head>
+<body>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+</body>
+</html>

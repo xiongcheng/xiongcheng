@@ -10,6 +10,7 @@
         window.onload=function(){
           aDiv=document.getElementsByTagName('div');
           for(var i=0;i<aDiv.length;i++){
+              aDiv[i].timer=null;//这样每个物体上都有一个定时器
             aDiv[i].onmouseover=function(){
              starMove(this,400);
             };
@@ -18,11 +19,18 @@
             };
           }
         };
-        var timer=null
-        function starMove(obj,target){
-         clearInterval(timer);
-         timer=setInterval(function(){
-             var speed=(target);
+        //var timer=null;
+        function starMove(obj,target){ //当面临多个对象时，运动框架就需要多一个参数，需要指明是哪一个对象运动
+         clearInterval(obj.timer);
+            obj.timer=setInterval(function(){
+             var speed=(target-obj.offsetWidth)/6;//确定速度值，缓冲运动中确定速度值的方法
+             speed=speed>0?Math.ceil(speed):Math.floor(speed); //只要用到缓冲取值法，就必须要速度取整
+             if(obj.offsetWidth==target){
+                 clearInterval(obj.timer);
+             }
+             else{
+                 obj.style.width=obj.offsetWidth+speed+'px';
+             }
 
          },30);
         }

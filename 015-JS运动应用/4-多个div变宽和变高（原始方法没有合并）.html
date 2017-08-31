@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+  div{width:200px;height:200px; background:red;margin:10px;color:#fff;
+      float: left;}
+    </style>
+    <script>
+        window.onload=function(){
+          oDiv1=document.getElementById('div1');
+          oDiv2=document.getElementById('div2');
+
+            oDiv1.onmouseover=function(){
+             starMove1(this,400);
+            };
+            oDiv1.onmouseout=function(){
+             starMove1(this,200);
+            };
+
+            oDiv2.onmouseover=function(){
+                starMove2(this,400);
+            };
+            oDiv2.onmouseout=function(){
+                starMove2(this,200);
+            };
+        };
+       
+        function starMove1(obj,target){ //当面临多个对象时，运动框架就需要多一个参数，需要指明是哪一个对象运动
+         clearInterval(obj.timer);
+            obj.timer=setInterval(function(){
+             var speed=(target-obj.offsetHeight)/6;//确定速度值，缓冲运动中确定速度值的方法
+             speed=speed>0?Math.ceil(speed):Math.floor(speed); //只要用到缓冲取值法，就必须要速度取整
+             if(obj.offsetHeight==target){
+                 clearInterval(obj.timer);
+             }
+             else{
+                 obj.style.height=obj.offsetHeight+speed+'px';
+             }
+
+         },30);
+        }
+
+        function starMove2(obj,target){ //当面临多个对象时，运动框架就需要多一个参数，需要指明是哪一个对象运动
+            clearInterval(obj.timer);
+            obj.timer=setInterval(function(){
+                var speed=(target-obj.offsetWidth)/6;//确定速度值，缓冲运动中确定速度值的方法
+                speed=speed>0?Math.ceil(speed):Math.floor(speed); //只要用到缓冲取值法，就必须要速度取整
+                if(obj.offsetWidth==target){
+                    clearInterval(obj.timer);
+                }
+                else{
+                    obj.style.width=obj.offsetWidth+speed+'px';
+                }
+
+            },30);
+        }
+    </script>
+</head>
+<body>
+<div id="div1">变高</div>
+<div id="div2">变宽</div>
+</body>
+</html>
