@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../js/echarts.min.js"></script>
+</head>
+<body>
+<div id="main" style="width:600px; height:450px;"></div>
+<div id="main1" style="width:600px; height:450px;"></div>
+<script type="text/javascript">
+    <!--第一个图-->
+    var myCharts=echarts.init(document.getElementById('main'));
+    myCharts.setOption({
+        color:['#FFC688','#aff2f2', '#f2afe5', '#c8ff88', 'c8ff88', '#97F3BE'],
+        title:{
+          text:'总完成数',
+          subtext:70,
+          top:'40%',
+          left:'50%',
+          textAlign:'center',
+          textStyle:{//主标题文字的样式
+              fontWeight: 'bold',
+              fontSize: 14,
+              color: '#222',
+          },
+            subtextStyle: {//副标题文字的样式
+                fontWeight: 'bold',
+                fontSize: 24,
+                color: '#222',
+            }
+
+        },
+        tooltip: {
+            show:true,
+            trigger: 'item',
+            formatter: "{a} <br/>{b}: {c} ({d}%)"
+        },
+        toolbox:{
+            feature:{
+                dataView: {},
+                saveAsImage: {
+                    pixelRatio: 2//保存图片的分辨率比例，默认跟容器相同大小，如果需要保存更高分辨率的，可以设置为大于 1 的值，例如 2
+                }
+            }
+        },
+        legend: {
+            orient: 'vertical',
+            x: 'left',
+            data:['直接访问','邮件营销','联盟广告','视频广告','搜索引擎']
+        },
+        series: [
+            {
+                name:'完成情况',
+                type:'pie',//饼状图类型
+                radius: ['50%', '70%'],//饼图的半径，数组的第一项是内半径，第二项是外半径。
+                center: ['50%', '50%'],//圆心位置
+
+                //支持设置成百分比，相对于容器高宽中较小的一项的一半。
+                avoidLabelOverlap: false,//是否启用防止标签重叠策略，默认开启，在标签拥挤重叠的情况下会挪动各个标签的位置，防止标签间的重叠。
+                label: {
+                    normal: {
+                        show: true,
+                        position: 'outside',//圆环外显示名称
+                        textStyle:{
+                            fontWeight:'normal',
+                            fontSize:14,
+                            color:'#444'
+                        }
+                    },
+                    emphasis: {
+                        show: true,
+                        textStyle: {
+                            fontSize: '30',
+                            fontWeight: 'bold'
+                        }
+                    }
+                },
+                labelLine:{//标签的视觉引导线样式
+                    normal:{
+                        show:true,
+                        lineStyle:{
+                            color:'#666'//视觉引导线的颜色
+                        }
+                    }
+                },
+                itemStyle:{//图形样式
+                    normal: {
+                        label: {
+                            show: true,
+                            formatter: '{b} : {c}'
+                        },
+                        labelLine: {
+                            show: false
+                        },
+                        borderWidth: 0,
+                        borderColor: '#ffffff',
+                    }
+                },
+                data:[
+                    {value:335, name:'直接访问'},
+                    {value:310, name:'邮件营销'},
+                    {value:234, name:'联盟广告'},
+                    {value:135, name:'视频广告'},
+                    {value:1548, name:'搜索引擎'}
+                ]
+            }
+        ]
+    })
+//    第二个图
+    var myCharts1=echarts.init(document.getElementById('main1'));
+    myCharts1.setOption({
+        title : {
+            text: '某站点用户访问来源',
+            subtext: '纯属虚构',
+            x:'center'
+        },
+        color:['#ffc688', '#ffada8', '#fce16b', '#cbc9ff', '#97f3be'],
+        tooltip : {
+            trigger: 'item',
+            formatter: "{a} <br/>{b} : {c} ({d}%)"
+        },
+        legend: {
+            orient: 'vertical',
+            left: 'left',
+            data: ['直接访问','邮件营销','联盟广告','视频广告','搜索引擎']
+        },
+        series : [
+            {
+                name: '知识点数量',
+                type: 'pie',
+                radius : '55%',
+                center: ['50%', '60%'],//饼图的中心（圆心）坐标，数组的第一项是横坐标，第二项是纵坐标
+                //支持设置成百分比，设置成百分比时第一项是相对于容器宽度，第二项是相对于容器高度
+                data:[
+                    {value:335, name:'直接访问'},
+                    {value:310, name:'邮件营销'},
+                    {value:234, name:'联盟广告'},
+                    {value:135, name:'视频广告'},
+                    {value:1548, name:'搜索引擎'}
+                ],
+                itemStyle: {
+                    normal:{
+                      label:{
+                          formatter: ' {b} ({d}%)'
+                      },
+                      borderWidth:1,//描边线宽
+                      borderColor:'#fff'//图形的描边颜色
+
+                    },
+                    emphasis: {
+                        shadowBlur: 10,
+                        shadowOffsetX: 0,
+                        shadowColor: 'rgba(0, 0, 0, 0.5)'
+                    }
+                },
+                labelLine:{//标签的视觉引导线样式
+                    normal:{
+                        show:true,
+                        lineStyle:{
+                            color:'#666'//视觉引导线的颜色
+                        }
+                    }
+                },
+
+
+
+            }
+        ]
+    })
+
+
+</script>
+</body>
+</html>

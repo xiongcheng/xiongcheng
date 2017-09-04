@@ -20,7 +20,7 @@
     border-bottom: 1px solid #dcdcdc;
 }
 .mr{
-    margin-right:20px;
+    margin-right:70px;
 }
 
     </style>
@@ -37,6 +37,7 @@
     </div>
 </div>
 <script type="text/javascript">
+    /*第一个echarts图*/
     var myCharts=echarts.init(document.getElementById('score'));
     myCharts.setOption({
         title: {
@@ -73,6 +74,7 @@
                 name: '题号',
                 type: 'line',
                 data: [1, 3, 9, 27, 81],
+                smooth:true,//控制折线光滑
                 itemStyle:{
                     normal:{
                         color:'#00c3a3',
@@ -82,6 +84,143 @@
 
 
         ]
+    })
+    /*第二个图*/
+    var myChart2=echarts.init(document.getElementById('sifenlv'));
+    myChart2.setOption({
+        title: {
+            text: '今日&昨日',
+            left: '50%',
+            textAlign: 'center'
+        },
+        tooltip: {
+            trigger: 'axis',
+            axisPointer: {
+                type:'line',
+                lineStyle: {
+                    color: '#E21918'//提示框线条颜色
+                }
+            },
+            backgroundColor: 'rgba(255,255,255,1)',//提示框浮层的背景颜色
+            padding: [5, 10],//提示框浮层内边距
+            textStyle: {//提示框浮层的文本样式
+                color: '#E21918',
+            },
+            extraCssText: 'box-shadow: 0 0 5px rgba(0,0,0,0.3)'//提示边框的阴影和颜色
+        },
+        legend: {
+            right: 20,
+            orient: 'horizontal',//水平方向
+            data: ['今日','昨日']
+        },
+        xAxis: {
+            type: 'category',
+            data: ['00:00','2:00','4:00','6:00','8:00','10:00','12:00','14:00','16:00','18:00','20:00',"22:00"],
+            boundaryGap: false,
+            splitLine: {
+                show: true,
+                interval: '0',//强制坐标点全部显示
+                lineStyle: {
+                    color: ['#D4DFF5']
+                }
+            },
+            axisTick: {
+                show:true
+            },
+            axisLine: {
+                lineStyle: {
+                    color: '#609ee9'
+                }
+            },
+            axisLabel: {//设置x轴上属性（字体大小，字体颜色）
+                margin:10,//刻度标签与轴线之间的距离
+                textStyle: {
+                    fontSize: 14//x轴上字体大小
+                }
+            }
+        },
+        yAxis: {
+            type: 'value',
+            splitLine: {
+                lineStyle: {
+                    color: ['#D4DFF5']
+                }
+            },
+            axisTick: {
+                show: true
+            },
+            axisLine: {
+                lineStyle: {
+                    color: '#609ee9'
+                }
+            },
+            axisLabel: {
+                margin: 10,//刻度标签与轴线之间的距离
+                textStyle: {
+                    fontSize: 14,
+                    color:'#E21918',//y轴上字体颜色
+                }
+            }
+        },
+        series: [{
+            name: '今日',
+            type: 'line',
+            smooth: true,//否平滑曲线显示
+            showSymbol: false,
+            symbol: 'rect',//标记的图形//ECharts 提供的标记类型包括 'circle', 'rect', 'roundRect', 'triangle', 'diamond', 'pin', 'arrow'
+            symbolSize: 6,//标记的大小
+            data: ['1200', '1400', '1008', '1411', '1026', '1288', '1300', '800', '1100', '1000', '1118', '1322'],
+            areaStyle: {//区域填充样式
+                normal: {
+                    color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                        offset: 0,
+                        color: 'rgba(199, 237, 250,0.5)'
+                    }, {
+                        offset: 1,
+                        color: 'rgba(199, 237, 250,0.2)'
+                    }], false)
+                }
+            },
+            itemStyle: {
+                normal: {
+                    color: '#f7b851'
+                }
+            },
+            lineStyle: {
+                normal: {
+                    width: 1
+                }
+            }
+        }, {
+            name: '昨日',
+            type: 'line',
+            smooth: true,
+            showSymbol: false,
+            symbol: 'circle',
+            symbolSize: 6,
+            data: ['1200', '1400', '808', '811', '626', '488', '1600', '1100', '500', '300', '1998', '822'],
+            areaStyle: {
+                normal: {
+                    color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                        offset: 0,
+                        color: 'rgba(216, 244, 247,1)'
+                    }, {
+                        offset: 1,
+                        color: 'rgba(216, 244, 247,1)'
+                    }], false)
+                }
+            },
+            itemStyle: {
+                normal: {
+                    color: '#58c8da'//线条颜色
+                }
+            },
+            lineStyle: {
+                normal: {
+                    width: 1//线条宽度
+                }
+            }
+        }]
     })
 </script>
 </body>
