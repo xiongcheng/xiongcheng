@@ -4,18 +4,31 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <style>
-        #div1{width:200px;height:200px;background: red;border:1px solid black;}
+        #div1{height:200px;background: red;border:1px solid black;}
     </style>
     <script>
-        window.onload=function(){
-          var oDiv=document.getElementById('div1');
+        function getStyle(obj,name){//构造一个函数，取非行间样式
+            if(obj.currentStyle){
+                return (obj.currentStyle[name]);
+            }
+            else{
+                return (getComputedStyle(obj,false)[name])
+            }
+        }
           setInterval(function(){
-              oDiv.style.width=oDiv.offsetWidth-1+'px';
+              var oDiv=document.getElementById('div1');
+              //oDiv.style.width=parseInt(oDiv.style.width)-1+'px';//这种只能取行间样式
+              // offsetWidth获取的是盒模型尺寸（border,padding）
+              //不用offsetWidth ，获取行间样式的方法很简单oDiv.style.+名称
+              //parseInt取整
+              //调用构造好了的函数
+              oDiv.style.width=parseInt(getStyle(oDiv,'width'))-1+'px';
+              //获取一定要parseInt(getStyle(obj,'width'))
+
           },30);
-        };
     </script>
 </head>
 <body>
-<div id="div1"></div>
+<div id="div1" style="width:200px;"></div>
 </body>
 </html>

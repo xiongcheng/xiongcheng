@@ -35,6 +35,7 @@
         function startmove(target){   //构造一个运动的函数框架
           clearInterval(timer);  //先关闭定时器
           timer=setInterval(function(){   //再重新开一个定时器
+
               var speed=0;
              if(alpha<target){  //当透明度的值小于目标值
                  speed=10;
@@ -48,6 +49,7 @@
              }
              else{  //否则opcity的就增大
                   alpha+=speed; //到目前为止，变化的并不是物体本身的亮度，而是透明度的变化
+                  //alpha=alpha+speed;
                   oDiv.style.opacity=alpha/100;
              }
           },30);

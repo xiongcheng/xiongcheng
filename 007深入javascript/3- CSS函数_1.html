@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <script>
-        function css(){
+        function css(){  //arguments 参数
             if(arguments.length==2){//获取
                 return arguments[0].style[arguments[1]];
             }
@@ -14,7 +14,7 @@
         }
         window.onload=function(){
             var oDiv=document.getElementById('div1');
-            //alert(css(oDiv,'width')); //获取
+            alert(css(oDiv,'width')); //获取宽度
             css(oDiv,'background','green'); //设置
 
         }

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+  div{width:200px;height:200px; background:red;margin:10px;color:#fff; font-size:14px; border:1px solid #ccc;
+      float: left;}
+    </style>
+    <script>
+        window.onload=function(){
+          oDiv1=document.getElementById('div1');
+          oDiv2=document.getElementById('div2');
+          oDiv3=document.getElementById('div3');
+          oDiv4=document.getElementById('div4');
+
+            oDiv1.onmouseover=function(){
+             starMove(this,'height',400);
+            };
+            oDiv1.onmouseout=function(){
+             starMove(this,'height',200);
+            };
+
+            oDiv2.onmouseover=function(){
+                starMove(this,'width',400);
+            };
+            oDiv2.onmouseout=function(){
+                starMove(this,'width',200);
+            };
+
+            oDiv3.onmouseover=function(){
+                starMove(this,'fontSize',40);
+            };
+            oDiv3.onmouseout=function(){
+                starMove(this,'fontSize',14);
+            };
+
+            oDiv4.onmouseover=function(){
+                starMove(this,'borderWidth',40);
+            };
+            oDiv4.onmouseout=function(){
+                starMove(this,'borderWidth',1);
+            };
+        };
+
+//        合并的方法，就是多设置一个参数attr
+        function starMove(obj,attr,target){ //当面临多个对象时，运动框架就需要多一个参数，需要指明是哪一个对象运动
+         clearInterval(obj.timer);
+            obj.timer=setInterval(function(){
+             var cur=parseInt(getStyle(obj,attr));//用一个变量存起来，获取样式 方便使用
+
+             var speed=(target-cur)/6;//确定速度值，缓冲运动中确定速度值的方法
+             speed=speed>0?Math.ceil(speed):Math.floor(speed); //只要用到缓冲取值法，就必须要速度取整
+             if(cur==target){
+                 clearInterval(obj.timer);
+             }
+             else{
+                 obj.style[attr]=cur+speed+'px';
+             }
+
+         },30);
+        }
+
+        function getStyle(obj,name){//构造一个函数，取非行间样式,也能取透明度样式
+            if(obj.currentStyle){
+                return (obj.currentStyle[name]);
+            }
+            else{
+                return (getComputedStyle(obj,false)[name])
+            }
+        }
+
+    </script>
+</head>
+<body>
+<div id="div1">变高</div>
+<div id="div2">变宽</div>
+<div id="div3">adgagdfgf</div>
+<div id="div4">线条</div>
+</body>
+</html>

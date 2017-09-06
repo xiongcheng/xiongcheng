@@ -9,12 +9,12 @@
  }
     </style>
     <script>
-        function getStyle(obj,name){
+        function getStyle(obj, name){
             if(obj.currentStyle){
-                return(obj.currentStyle.name);
+                return(obj.currentStyle[name]);
             }
             else{
-                return(getComputedStyle(obj,false).width);
+                return(getComputedStyle(obj,false)[name]);
             }
         }
 
@@ -24,7 +24,7 @@
             //currentStyle不兼容，只能兼容IE
            // alert(oDiv.currentStyle.width);
 
-            //Chrome、FF getComputedStyle有两个参数，第一个参数，是你要获取物体的样式，第二个参数随便填内容
+            //Chrome、FF getComputedStyle有两个参数，第一个参数，是你要获取物体的对象，第二个参数随便填内容
            // alert(getComputedStyle(oDiv,false).width);
 
             //alert(oDiv.currentStyle);//在IE上不为空，布朗值为true； 在chrom、FF上为undefined,布朗值为false
