@@ -5,11 +5,11 @@
     <title>Title</title>
     <script>
         window.onload=function(){
-          var oUl=document.getElementById('ul');
+          var oUl=document.getElementById('ul1');
           var aLi=oUl.getElementsByTagName('li');
-          for(var i=0;i<aLi.length;i++){
+          for(var i=0;i<aLi.length;i++){//遍历所有的li
 
-              if(aLi[i].className=='box'){
+              if(aLi[i].className=='box'){//判断li的className是否等会box，找到样式为box的标签
                   aLi[i].style.background='red';
               }
           }
@@ -17,7 +17,7 @@
     </script>
 </head>
 <body>
-<ul>
+<ul id="ul1">
     <li class="box"></li>
     <li></li>
     <li></li>
