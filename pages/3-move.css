@@ -1,0 +1,131 @@
+*{
+    margin:0;
+    padding:0;
+}
+
+p,i,em{
+    font-style:normal;
+}
+
+li{
+    list-style:none;
+}
+.play{
+    width:1200px;
+    height:980px;
+    margin: 0 auto ;
+    background:#999;
+    font:12px Arial;
+}
+.big_pic{
+    position: relative;
+    width:900px;
+    height:640px;
+    margin:0 auto;
+    overflow: hidden;
+    border-bottom:1px solid #ccc;
+    background: #222;
+
+}
+
+/*大图堆叠在一起，位置都是一样*/
+.big_pic li{
+    position: absolute;
+    top:0;
+    left:0;
+    z-index: 0;//让其层级都是0
+    width:900px;
+    height:640px;
+    overflow: hidden;
+}
+
+.mark_left{
+    width:450px;
+    height:640px;
+    position:absolute;
+    left:0;
+    top:0;
+    background:red;
+    opacity:0;
+    z-index:3000;
+}
+.mark_right{
+    width:450px;
+    height:640px;
+    position:absolute;
+    left:450px;
+    top:0;
+    background:green;
+    opacity:0;
+    z-index:3000;
+}
+/*前一页按钮*/
+.big_pic .prev{
+    position:absolute;
+    top:300px;
+    left:10px;
+    z-index:3001;
+    opacity: 0;
+    cursor:pointer;
+    width:60px;
+    height:60px;
+    background:url(../img/pre.png)no-repeat #ccc;
+}
+/*下一页按钮*/
+.big_pic .next{
+    position:absolute;
+    top:300px;
+    right:10px;
+    z-index:3001;
+    opacity: 0;
+    cursor:pointer;
+    width:60px;
+    height:60px;
+    background:url(../img/next.png)no-repeat 0 -60px red;
+}
+.big_pic .bg{
+    width:400px;
+    height:25px;
+    background:#000;
+    opacity: 0.6;
+    position:absolute;
+    bottom:0;
+    left:0;
+    z-index: 2999;
+}
+
+/*小图一排设置*/
+.small_pic{
+    width:900px;
+    height:300px;
+    margin:0 auto;
+    position: relative;
+    overflow: hidden;
+}
+.small_pic ul{
+    height:300px;
+    position: absolute;
+    bottom:0;
+    left:0;
+}
+/*.small_pic li{*/
+    /*width:900px;*/
+    /*height:300px;*/
+    /*padding-right:10px;*/
+    /*cursor:pointer;*/
+    /*opacity:0.6;*/
+/*}*/
+
+.small_pic li{
+    width:900px;
+    //height:300px;
+    //padding-right:10px;
+    cursor:pointer;
+    opacity:0.6;
+
+}
+
+.small_pic img{
+    float: left;
+    width:33.3%;
+}

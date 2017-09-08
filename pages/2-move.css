@@ -1,0 +1,60 @@
+*{
+    margin:0;
+    padding:0;
+}
+
+p,i,em{
+    font-style:normal;
+}
+
+li{
+    list-style:none;
+}
+.move_box{
+    width:1200px;
+    height:980px;
+    margin:0 auto;
+}
+/*一定要设置高度和溢出隐藏*/
+.big_img{
+    position:relative;
+    width:900px;
+    height:640px;
+    margin:60px  auto 0;
+    overflow: hidden;
+}
+/*大图堆叠在一起,一定要设置高度和溢出隐藏*/
+.big_img li{
+    width:900px;
+    height:640px;
+    position:absolute;
+    top:0;
+    left:0;
+    z-index:0;
+    overflow: hidden;
+}
+
+/*小图块也要设置高度*/
+.small_img{
+    position:relative;
+    width:900px;
+    height:300px;
+    margin:0 auto;
+    overflow: hidden;
+}
+.small_img ul{
+    height:300px;
+    position:absolute;
+    bottom:0;
+    left:0;
+}
+.small_img li{
+   width:900px;
+   opacity:0.6;
+   cursor:pointer;
+}
+.small_img img{
+    width:33.3%;
+    float:left;
+}
+

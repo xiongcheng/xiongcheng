@@ -28,9 +28,11 @@
                 var cur=0;
                 if(attr=='opacity'){
                     cur=Math.round(parseFloat(getStyle(obj,attr))*100); //如果设置的是物体的透明度，就执行这行代码
+//                    parseFloat()可取小数，Math.round是四舍五入
                 }
                 else{
                     cur=parseInt(getStyle(obj,attr));//用一个变量将取非行间样式的函数存起来，方便使用
+//                    parseInt()是取整
                 }
 
              var speed=(target-cur)/6;//确定速度值，缓冲运动中确定速度值的方法//目标值减去获取的样式值（宽、高、透明度）
@@ -42,7 +44,7 @@
              else{
                  if(attr=='opacity'){
                      obj.style.opacity=(cur+speed)/100;
-                     document.getElementById('txt1').value=obj.style.opacity;
+                     document.getElementById('txt1').value=obj.style.opacity;//这行代码是测试用的
                  }
                  else{
                      obj.style[attr]=cur+speed+'px';
