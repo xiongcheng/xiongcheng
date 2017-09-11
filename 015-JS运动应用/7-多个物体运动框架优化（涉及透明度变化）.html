@@ -10,23 +10,32 @@
     </style>
     <script>
         window.onload=function(){
-          oDiv1=document.getElementById('div1');
-
+            var oDiv1=document.getElementById('div1');
+            var oDviv2=document.getElementById('div2');
+          alert(getStyle(div1,'width'));
+            alert(getStyle(div2,'opacity'));
             oDiv1.onmouseover=function(){
-             starMove(this,'opacity',100);
+             startMove(this,'opacity',100);
             };
             oDiv1.onmouseout=function(){
-             starMove(this,'opacity',30);
+             startMove(this,'opacity',30);
+            };
+            oDviv2.onmouseover=function(){
+             startMove(this,'width',600);
+            };
+            oDviv2.onmouseout=function(){
+                startMove(this,'width',200);
             };
         };
 
 //        合并的方法，就是多设置一个参数attr
         //透明度取样式不是取整 应该parseFloat  并且获得样式也没有px
-        function starMove(obj,attr,target){ //当面临多个对象时，运动框架就需要多一个参数，需要指明是哪一个对象运动
+        function startMove(obj,attr,target){ //当面临多个对象时，运动框架就需要多一个参数，需要指明是哪一个对象运动
          clearInterval(obj.timer);
             obj.timer=setInterval(function(){
                 var cur=0;
                 if(attr=='opacity'){
+//                    重点如下
                     cur=Math.round(parseFloat(getStyle(obj,attr))*100); //如果设置的是物体的透明度，就执行这行代码
 //                    parseFloat()可取小数，Math.round是四舍五入
                 }
@@ -68,6 +77,7 @@
 </head>
 <body>
 <div id="div1">透明度</div>
+<div id="div2">宽</div>
 <input type="text" id="txt1">
 </body>
 </html>

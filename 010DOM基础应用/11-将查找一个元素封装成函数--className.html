@@ -23,8 +23,9 @@
         window.onload=function(){
 
           var oUl=document.getElementById('ul1');
-          var aBox=getByClass(oUl,'box');//找到的样式为box标签为多个，就应该一个for循环，一个个的赋值，让其变为红色背景
-          for(var i=0;i<aBox.length;i++){
+          var aBox=getByClass(oUl,'box')[0];//找到的样式为box标签为多个，就应该一个for循环，一个个的赋值，让其变为红色背景
+           alert(aBox);
+            for(var i=0;i<aBox.length;i++){
               aBox[i].style.background='red';
 
           }

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="../pages/2-move.css">
+    <script src="../js/startMove.js"></script>
+    <script>
+        window.onload=function(){
+            var oDiv=document.getElementById('move_box');
+            var oPre=getByClass(oDiv,'pre');
+            var oNext=getByClass(oDiv,'next');
+            oPre.onclick=function(){
+
+            };
+        };
+  function getByClass(oParent,sclass){//通过class样式获取元素值
+      var aEle=oParent.getElementsByTagName('*');
+      var aResult=[];
+      for(var i=0;i<aEle.length;i++){
+          if(aEle[i]==sclass){
+              aResult.push(aEle[i]);
+          }
+      }
+      return aResult;
+  }
+    </script>
+</head>
+<body>
+<div id="move_box">
+    <div class="big_img">
+        <ul>
+            <div class="prev"></div>  /*前一页按钮*/
+            <div class="next"></div>  //下一页按钮
+            <li style="z-index:1"><img src="../img/move1.jpg" ></li>
+            <li><img src="../img/move2.jpg" ></li>
+            <li> <img src="../img/move3.jpg" ></li>
+        </ul>
+    </div>
+    <div class="small_img">
+        <ul>
+            <li><img src="../img/move1.jpg" ></li>
+            <li><img src="../img/move2.jpg" ></li>
+            <li><img src="../img/move3.jpg" ></li>
+        </ul>
+    </div>
+
+</div>
+</body>
+</html>

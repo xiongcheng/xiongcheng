@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="../pages/3-move.css">
+    <style>
+        #div1{
+            width:200px;height:200px; background: red;opacity: 0.3;
+        }
+    </style>
+    <script src="../js/startMove.js"></script>
+    <!--//直接引用多物体运动框架js-->
+    <script>
+        window.onload=function(){
+            var oDiv=document.getElementById('playimages');
+            var oPrev=getByClass(oDiv,'prev')[0]; //第二种获取物体的方式，是通过class的名字来获取的
+            var oNext=getByClass(oDiv,'next')[0];
+            var oMarkLeft=getByClass(oDiv,'mark_left')[0];//左遮罩
+            var oMarkRight=getByClass(oDiv,'mark_right')[0];//右遮罩
+
+//           函数测试部分
+            var oDiv1=document.getElementById('div1');
+            oDiv1.onmouseover=function(){
+                startMove(this,'opacity',100);
+            };
+            oDiv1.onmouseout=function(){
+                startMove(this,'opacity',30);
+            };
+            //alert(getStyle(oPrev,'width'));测试使用
+            //alert(oMarkRight);
+
+/*向前向后按钮显现*/
+            oPrev.onmouseover=oMarkLeft.onmouseover=function(){
+                startMove(oPrev,'opacity',100);
+            };
+
+            oPrev.onmouseout=oMarkLeft.onmouseout=function(){
+                startMove(oPrev,'opacity',0);
+            };
+
+            oNext.onmouseover=oMarkRight.onmouseover=function(){
+                startMove(oNext,'opacity',100);
+            };
+
+            oNext.onmouseout=oMarkRight.onmouseout=function(){
+                startMove(oNext,'opacity',0);
+            };
+ /*点击小图，大图从上往下显现*/
+//            第一步是将元素获取出来
+            var oBigPic=getByClass(oDiv,'big_pic')[0];//选取的元素是数组，一般用数组的一个数，所以必须要加[0]
+            var aBigLi=oBigPic.getElementsByTagName('li');//大图的所有li全部选出来
+            var oSmallPic=getByClass(oDiv,'small_pic')[0];
+            var aSmallLi=oSmallPic.getElementsByTagName('li');//小图的所有li全部选出来
+
+            var nowZIndex=2;//大图堆叠在一起，是通过z-index的层级来决定的，设置初始值为2，接下来每次点击小图，大图的
+//            层级都增加一个
+            var now=0;//表示当前页
+
+            for(var i=0;i<aSmallLi.length;i++){
+                aSmallLi[i].index=i;//表示的意思是，执行的是哪一张小图，好来决定改变哪一张大图
+//                小图的index和大图的index相对应，就实现了小图与大图的相对应的关系
+//                重点是这行代码一定要放在下面代码之前，每个li点击之前就应该知道点击的是哪一张小图
+
+                aSmallLi[i].onclick=function(){//点击每一张小图，都执行的函数
+                    if(this.index==now) return;//如果是当前页，返回值为空，不让其刷新
+                    now=this.index;//让变化的值赋给now，相当于定义了now的意思
+                   tab();
+                };
+
+//                鼠标移入移出图片透明度的变化
+
+                aSmallLi[i].onmouseover=function(){
+                    startMove(this,'opacity',100);
+                };
+                aSmallLi[i].onmouseout=function(){
+                    if(this.index!=now){//鼠标移出时，需要判断一下，是不是当前页，要不是当前页，才变透明
+                        startMove(this,'opacity',60);
+                    }
+                };
+            }
+
+//    封装一个函数 将this.index全部用now代替
+            function tab(){
+                aBigLi[now].style.zIndex=nowZIndex++;  /*让大图出现*/
+
+//                    跟显像卡的原理类似，先让所有的图片为透明，然后设置当前为不透明
+                for(var i=0;i<aSmallLi.length;i++){
+                    startMove( aSmallLi[i],'opacity',60);
+                }
+                startMove(aSmallLi[now],'opacity',100);
+
+                //aBigLi[now].style.height=0; 这两行代码有问题
+                //startMove(aBigLi[now],'height',640);
+            }
+
+ /*点击上一张，下一张时，大图向左 向右移动*/
+            oPrev.onclick=function(){
+               now--;
+               if(now==-1){//从右向左走 当到达最左边-1
+                now=aSmallLi.length-1;//2  回到最右边//aSmallLi.length== 3
+               }
+               tab();
+            };
+            oNext.onclick=function(){//从左向右走
+               now++;//0-2
+               if(now==aSmallLi.length){//这行代码作用是让下一页循环起来  当达到最右边3
+                now=0;//回到最左边
+               }
+               tab();
+            };
+
+        };
+
+
+//通过标签样式获取元素的函数块，获取的元素都是数组
+        function getByClass(oParent, sclass){//获取标签中class为xclass的
+          var aResult=[];
+          var aEle=oParent.getElementsByTagName('*');//获取在oParent父级下的所有标签
+          for(var i=0;i<aEle.length;i++){
+              if(aEle[i].className==sclass){//判断每个标签的className是否等于xclass
+                  aResult.push(aEle[i]);//将找到符合条件的标签全部放在aResult数组中
+              }
+          }
+            return aResult;
+        }
+
+//        重点：通过上述函数块获取的元素，都是数组
+
+    </script>
+</head>
+<body>
+ <div id="playimages" class="play">
+     <!--大图-->
+     <ul class="big_pic">
+         <div class="prev"></div>  /*前一页按钮*/
+         <div class="next"></div>  //下一页按钮
+         <a class="mark_left" href="javascript:;"></a>   //左边遮罩层
+         <a class="mark_right" href="javascript:;"></a>  //右边遮罩层
+         <!--<div class="bg"></div>-->
+         
+         <li style="z-index:1"><img src="../img/move1.jpg" alt=""></li>
+         <li><img src="../img/move2.jpg" alt=""></li>
+         <li><img src="../img/move3.jpg" alt=""></li>
+     </ul>
+
+     <!--小图-->
+     <div class="small_pic">
+         <ul style="width:300px">
+           <li style="opacity:1 "><img src="../img/move1.jpg" alt=""></li>
+             <li><img src="../img/move2.jpg" alt=""></li>
+             <li><img src="../img/move3.jpg" alt=""></li>
+         </ul>
+     </div>
+ <div id="div1"></div>
+ </div>
+</body>
+</html>

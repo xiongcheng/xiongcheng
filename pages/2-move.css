@@ -10,7 +10,7 @@ p,i,em{
 li{
     list-style:none;
 }
-.move_box{
+#move_box{
     width:1200px;
     height:980px;
     margin:0 auto;
@@ -32,8 +32,30 @@ li{
     left:0;
     z-index:0;
     overflow: hidden;
+    z-index:3000;
 }
-
+.prev{
+    position: absolute;
+    top:300px;
+    left:10px;
+    cursor:pointer;
+    opacity: 1;
+    z-index:3001;
+    width:60px;
+    height:60px;
+    background:url(../img/pre.png)no-repeat #ccc;
+}
+.next{
+    position:absolute;
+    top:300px;
+    right:10px;
+    z-index:3001;
+    opacity: 1;
+    cursor:pointer;
+    width:60px;
+    height:60px;
+    background:url(../img/next.png)no-repeat 0 -60px red;
+}
 /*小图块也要设置高度*/
 .small_img{
     position:relative;
