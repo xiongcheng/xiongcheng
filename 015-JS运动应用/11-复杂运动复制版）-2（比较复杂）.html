@@ -2,11 +2,11 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>完整版</title>
     <link rel="stylesheet" href="../pages/3-move.css">
     <style>
         #div1{
-            width:200px;height:200px; background: red;opacity: 0.3;
+            width:200px;height:200px; background: red;opacity: 0.3; margin-top:300px;
         }
     </style>
     <script src="../js/startMove.js"></script>
@@ -51,11 +51,17 @@
             var oBigPic=getByClass(oDiv,'big_pic')[0];//选取的元素是数组，一般用数组的一个数，所以必须要加[0]
             var aBigLi=oBigPic.getElementsByTagName('li');//大图的所有li全部选出来
             var oSmallPic=getByClass(oDiv,'small_pic')[0];
+
+            var oSmallUl=oSmallPic.getElementsByTagName('ul')[0];//获取小图的ul
+
             var aSmallLi=oSmallPic.getElementsByTagName('li');//小图的所有li全部选出来
 
             var nowZIndex=2;//大图堆叠在一起，是通过z-index的层级来决定的，设置初始值为2，接下来每次点击小图，大图的
 //            层级都增加一个
             var now=0;//表示当前页
+
+//  需要设置小图ul的宽度，使其等于小图li的个数*小图li的宽度
+            oSmallUl.style.width=aSmallLi.length*aSmallLi[0].offsetWidth+'px';
 
             for(var i=0;i<aSmallLi.length;i++){
                 aSmallLi[i].index=i;//表示的意思是，执行的是哪一张小图，好来决定改变哪一张大图
@@ -92,6 +98,18 @@
 
                 //aBigLi[now].style.height=0; 这两行代码有问题
                 //startMove(aBigLi[now],'height',640);
+//
+//  控制小图无缝滚动的代码
+                if(now==0){//第一张图片
+                    startMove(oSmallUl,'left',0);
+                }
+                else if(now==aSmallLi.length-1){//最后一张图片
+                    startMove(oSmallUl,'left',-(now-2)*aSmallLi[0].offsetWidth);
+                }
+                else{
+                    startMove(oSmallUl,'left',-(now-1)*aSmallLi[0].offsetWidth);//是小图的ul运动，运动一个li的宽度
+                }
+
             }
 
  /*点击上一张，下一张时，大图向左 向右移动*/
@@ -103,15 +121,25 @@
                tab();
             };
             oNext.onclick=function(){//从左向右走
-               now++;//0-2
+               now++;//0-5
                if(now==aSmallLi.length){//这行代码作用是让下一页循环起来  当达到最右边3
                 now=0;//回到最左边
                }
                tab();
             };
-
+//   开一个定时器让其自己播放
+            var timer=setInterval( oNext.onclick,2000);
+            oDiv.onmouseover=function(){
+                clearInterval(timer);
+            };
+            oDiv.onmouseout=function(){
+                timer=setInterval( oNext.onclick,2000);
+            };
         };
 
+
+
+/*小图向右向左运动*/
 
 //通过标签样式获取元素的函数块，获取的元素都是数组
         function getByClass(oParent, sclass){//获取标签中class为xclass的
@@ -142,14 +170,20 @@
          <li style="z-index:1"><img src="../img/move1.jpg" alt=""></li>
          <li><img src="../img/move2.jpg" alt=""></li>
          <li><img src="../img/move3.jpg" alt=""></li>
+         <li><img src="../img/move4.jpg" alt=""></li>
+         <li><img src="../img/move5.jpg" alt=""></li>
+         <li><img src="../img/move6.jpg" alt=""></li>
      </ul>
 
      <!--小图-->
      <div class="small_pic">
-         <ul style="width:300px">
+         <ul style="width:900px">
            <li style="opacity:1 "><img src="../img/move1.jpg" alt=""></li>
              <li><img src="../img/move2.jpg" alt=""></li>
              <li><img src="../img/move3.jpg" alt=""></li>
+             <li><img src="../img/move4.jpg" alt=""></li>
+             <li><img src="../img/move5.jpg" alt=""></li>
+             <li><img src="../img/move6.jpg" alt=""></li>
          </ul>
      </div>
  <div id="div1"></div>

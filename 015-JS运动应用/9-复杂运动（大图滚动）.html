@@ -8,11 +8,25 @@
     <script>
         window.onload=function(){
             var oDiv=document.getElementById('move_box');
-            var oPre=getByClass(oDiv,'pre');
-            var oNext=getByClass(oDiv,'next');
-            oPre.onclick=function(){
+            var oPre=getByClass(oDiv,'pre')[0];
+            var oNext=getByClass(oDiv,'next')[0];
+            var oBigImg=getByClass(oDiv,'big_img')[0];
+            var aBigLi=oBigImg.getElementsByTagName('li');
+            var nowZIndex=2;
+            var now=0;
+            for(var i=0;i<aBigLi.length;i++){
+                aBigLi[i].index=i;
+                now=this.index;
+                oPre.onclick=function(){
+                    now++;
+                    now.style.zIndex=nowZIndex++;
+                };
+                oNext.onclick=function(){
+                    now--;
+                    now.style.zIndex=nowZIndex++;
+                };
+            }
 
-            };
         };
   function getByClass(oParent,sclass){//通过class样式获取元素值
       var aEle=oParent.getElementsByTagName('*');

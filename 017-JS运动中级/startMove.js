@@ -25,6 +25,7 @@ function startMove(obj,attr,target,fnEnd){ //当面临多个对象时，运动�
 
         if(cur==target){
             clearInterval(obj.timer);
+            //检测一下函数参数是否传进来没
             if(fnEnd) fnEnd();
         }
         else{

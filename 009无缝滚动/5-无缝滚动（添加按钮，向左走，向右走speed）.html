@@ -39,8 +39,9 @@
           var oUl=oDiv.getElementsByTagName('ul')[0];
           var aLi=oUl.getElementsByTagName('li');
           var speed=2;//控制滚动方向和速度
-          oUl.innerHTML=oUl.innerHTML+oUl.innerHTML;//复制一份
-          oUl.style.width=aLi[0].offsetWidth*aLi.length+'px';//定义ul的宽度
+          oUl.innerHTML=oUl.innerHTML+oUl.innerHTML;//复制一份,滚动是让ul移动
+
+          oUl.style.width=aLi[0].offsetWidth*aLi.length+'px';//定义ul的宽度,li的宽度乘以li的个数
 
             function move(){ //将定时器中的函数提出来，并给函数命名
                 if(oUl.offsetLeft<-oUl.offsetWidth/2){

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #div1{width:100px;height:100px; background-color: red;opacity: 0.3}
+    </style>
+    <script src="startMove2.js"></script>
+    <script>
+        window.onload=function(){
+         var oBtn=document.getElementById('btn1');
+         var oDiv=document.getElementById('div1');
+         oBtn.onclick=function(){//点击按钮想要物体的宽高同时变为300px，这是没有办法实现的
+             startMove(oDiv,{width:300,height:300,opacity:100});
+
+         };
+        };
+    </script>
+</head>
+<body>
+<input type="button" id="btn1" value="按钮">
+<div id="div1"></div>
+</body>
+</html>

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <style>
-        #div1{width:100px;height:100px; background: red;}
+        #div1{width:100px;height:100px; background: red;opacity: 0.3;}
     </style>
     <script src="startMove.js"></script>
     <script>
@@ -13,8 +13,17 @@
             alert(getStyle(oDiv,'width'));
             oDiv.onmouseover=function(){
                 startMove(this,'width',300,function(){
-                    startMove(oDiv,'height',300);
+                    startMove(oDiv,'height',300,function(){
+                        startMove(oDiv,'opacity',100);
+                    });
                 });
+            };
+            oDiv.onmouseout=function(){
+              startMove(oDiv,'opacity',30,function(){
+                  startMove(oDiv,'height',100,function(){
+                      startMove(oDiv,'width',100);
+                  });
+              });
             };
         };
 
