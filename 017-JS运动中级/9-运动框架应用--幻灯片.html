@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>幻灯片</title>
+    <link rel="stylesheet" href="../pages/asset.css">
+    <link rel="stylesheet" href="../pages/2-slide.css">
+    <script src="startMove2.js"></script>
+    <script>
+   window.onload=function(){
+//       第一步获取元素
+     var oBody=document.getElementById('body');
+     var oBlockChart=getByClass(oBody,'block_chart')[0];
+     var aBlockLi=oBlockChart.getElementsByTagName('li');//获取四个小方块元素
+     var oBigImg=getByClass(oBody,'big_img_box')[0];
+     var oBigUl=oBigImg.getElementsByTagName('ul')[0];
+     var aImgLi=oBigUl.getElementsByTagName('li');//获取四张大图的li元素
+     var  now=0;//初始化当前页的值
+    // alert(oBigUl);
+    //  alert(oBlockChart);
+       for(var i=0;i<aBlockLi.length;i++){
+           aBlockLi[i].index=i;//点击四个方块来控制大图的变化，一定要用index这个值，相当于按钮与大图之间的纽带
+           // 而当大图的变化不通过按钮来控制的话，就不需要用index这个属性
+
+           now=this.index;//定义now的意思，表示当前页
+           aBlockLi[i].onclick=function(){
+               for(var i=0;i<aBlockLi.length;i++){
+                   aBlockLi[i].className='';//先让所有li的没有active
+               }
+               this.className='active';//重点是，一定是让当前的样式this.className，而用aBlockLi[i].className为错
+//           大图一张张向上运动，top的值为负值，运动的规律-n*大图的高度
+               //oBigUl.style.top=-600*this.index+'px';//原始做法
+           };
+       }
+   };
+
+   function getByClass (oparent,sclass){//构造通过样式class的方式获取元素
+       var aEle=oparent.getElementsByTagName('*');
+       var aResult=[];
+       for(var i=0;i<aEle.length;i++){
+           if(aEle[i].className==sclass){
+               aResult.push(aEle[i]);
+           }
+       }
+       return aResult;
+
+   }
+    </script>
+</head>
+<body>
+<div id="body">
+    <!--四个按钮方块-->
+    <div class="block_chart">
+        <ul>
+            <li class="active">1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+        </ul>
+    </div>
+    <!--四张大图片-->
+    <!--四张图的呈现方式，不是通过z-index方式呈现，是通过top方式-->
+    <div class="big_img_box">
+        <!--不管是以哪种方式呈现，移动的都是整个ul而不是li，这是重点-->
+        <ul>
+            <li><img src="../img/move1.jpg" alt=""></li>
+            <li><img src="../img/move2.jpg" alt=""></li>
+            <li><img src="../img/move3.jpg" alt=""></li>
+            <li><img src="../img/move4.jpg" alt=""></li>
+        </ul>
+    </div>
+</div>
+</body>
+</html>

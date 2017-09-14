@@ -102,13 +102,14 @@ li{
     position: relative;
     top:0px;
     left:150px;
-   // overflow: hidden;
+    overflow: hidden;
 }
 .small_pic ul{
     height:190px;
     position: absolute;
     top:0;
     left:0;
+    overflow: hidden;
 }
 /*.small_pic li{*/
     /*width:900px;*/

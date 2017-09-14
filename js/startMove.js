@@ -19,9 +19,8 @@ function startMove(obj,attr,target){
             //获取的物体的样式值要取整
         }
 
-        var speed=0;
         //速度取值，是目标值-获取的样式值
-        speed=(target-cur)/6;//缓冲运动的speed的取值方法 目标值跟速度成正比，越靠近目标值，速度越慢
+        var speed=(target-cur)/6;//缓冲运动的speed的取值方法 目标值跟速度成正比，越靠近目标值，速度越慢
         speed=speed>0?Math.ceil(speed):Math.floor(speed);//缓冲运动的速度值，一定要做向上向下取整处理，不然速度值是小数的时候，会自动舍弃，取值不完整
 
         if(cur==target){
@@ -33,7 +32,8 @@ function startMove(obj,attr,target){
 
             }
             else{
-                obj.style.attr=cur+speed+'px'
+                //attr已经作为了参数，所以不能obj.style.attr这种方式来写，一定要用obj.style[attr]
+                obj.style[attr]=cur+speed+'px'
             }
         }
 

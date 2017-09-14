@@ -18,14 +18,14 @@
             var oNext=getByClass(oDiv,'next')[0];
             var oMarkLeft=getByClass(oDiv,'mark_left')[0];//左遮罩
             var oMarkRight=getByClass(oDiv,'mark_right')[0];//右遮罩
-
+            alert(oPrev);
 //           函数测试部分
             var oDiv1=document.getElementById('div1');
             oDiv1.onmouseover=function(){
-                startMove(this,'opacity',100);
+                startMove(this,'width',100);
             };
             oDiv1.onmouseout=function(){
-                startMove(this,'opacity',30);
+                startMove(this,'width',30);
             };
             //alert(getStyle(oPrev,'width'));测试使用
             //alert(oMarkRight);
@@ -88,27 +88,48 @@
 
 //    封装一个函数 将this.index全部用now代替
             function tab(){
-                aBigLi[now].style.zIndex=nowZIndex++;  /*让大图出现*/
 
-//                    跟显像卡的原理类似，先让所有的图片为透明，然后设置当前为不透明
+                aBigLi[now].style.zIndex=nowZIndex++;  /*让大图出现  让大图的层级一级级提起来*/
+
+//           跟显像卡的原理类似，先让所有的图片为透明，然后设置当前为不透明
                 for(var i=0;i<aSmallLi.length;i++){
                     startMove( aSmallLi[i],'opacity',60);
                 }
                 startMove(aSmallLi[now],'opacity',100);
 
-                //aBigLi[now].style.height=0; 这两行代码有问题
-                //startMove(aBigLi[now],'height',640);
+                aBigLi[now].style.height=0; //想要图片从上往下显现，首先让其高度为0
+               startMove(aBigLi[now],'height',640);//再让其高度变化到640px
+
 //
 //  控制小图无缝滚动的代码
+//
                 if(now==0){//第一张图片
                     startMove(oSmallUl,'left',0);
                 }
-                else if(now==aSmallLi.length-1){//最后一张图片
+                else if(now==aSmallLi.length-1){//最后一张图片，ul也是不移动的
                     startMove(oSmallUl,'left',-(now-2)*aSmallLi[0].offsetWidth);
                 }
                 else{
                     startMove(oSmallUl,'left',-(now-1)*aSmallLi[0].offsetWidth);//是小图的ul运动，运动一个li的宽度
                 }
+//             翻到第几张图片   ul移动的距离（向左运动）W代表一个li的宽度
+//                0             0
+//                1             0
+//                2            -1W
+//                3            -2W
+//                n            -(n-1)W
+
+//                上面用运动框架可以实现了，也可以用下面原始的方法
+
+//                if(now==0){
+//                    oSmallUl.style.left=0;
+//                }
+//                else if(now==aSmallLi.length-1){
+//                    oSmallUl.style.left=-(now-2)*aSmallLi[0].offsetWidth+'px';
+//                }
+//                else{
+//                    oSmallUl.style.left=-(now-1)*aSmallLi[0].offsetWidth+'px';
+//                }
 
             }
 
@@ -127,7 +148,8 @@
                }
                tab();
             };
-//   开一个定时器让其自己播放
+
+//   开一个定时器让其自己播放   大图一页一页向下播放，对应着小图也一张张往下播放（now）
             var timer=setInterval( oNext.onclick,2000);
             oDiv.onmouseover=function(){
                 clearInterval(timer);
@@ -166,7 +188,7 @@
          <a class="mark_left" href="javascript:;"></a>   //左边遮罩层
          <a class="mark_right" href="javascript:;"></a>  //右边遮罩层
          <!--<div class="bg"></div>-->
-         
+         <!--大图都堆叠在一起，是通过z-index的层级来显现的-->
          <li style="z-index:1"><img src="../img/move1.jpg" alt=""></li>
          <li><img src="../img/move2.jpg" alt=""></li>
          <li><img src="../img/move3.jpg" alt=""></li>

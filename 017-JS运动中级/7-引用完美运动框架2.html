@@ -12,7 +12,9 @@
          var oBtn=document.getElementById('btn1');
          var oDiv=document.getElementById('div1');
          oBtn.onclick=function(){//点击按钮想要物体的宽高同时变为300px，这是没有办法实现的
-             startMove(oDiv,{width:300,height:300,opacity:100});
+             startMove(oDiv,{width:101,height:300,opacity:100},function () {
+                 alert('a');
+             });
 
          };
         };

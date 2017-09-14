@@ -1,0 +1,15 @@
+*{
+    margin:0;
+    padding:0;
+}
+
+p,i,em{
+    font-style:normal;
+}
+
+li{
+    list-style:none;
+}
+.bg_white{
+    background-color:#fff;
+}

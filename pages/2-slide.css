@@ -1,0 +1,45 @@
+
+#body{
+    position:relative;
+    overflow: hidden;
+    width:1200px;
+    margin:0 auto;
+    margin-top:60px;
+    background-color: #07a7de;
+}
+.block_chart{
+    position:absolute;
+    top:544px;
+    right:400px;
+    z-index:3000;
+}
+.block_chart li{
+    display:inline-block;
+    width:30px;
+    height:30px;
+    margin:20px;
+    line-height:30px;
+    text-align:center;
+    border:1px solid #ccc;
+    cursor:pointer;
+    //background-color: #dcdcdc;
+}
+.active{
+    background-color: red ;
+    color:#fff;
+}
+
+.big_img_box ul{
+    position:relative;
+    left:200px;
+    width:900px;
+    height:600px;
+}
+.big_img_box li{
+    width:900px;
+    height:600px;
+}
+.big_img_box li img{
+    width:900px;
+    height:600px;
+}

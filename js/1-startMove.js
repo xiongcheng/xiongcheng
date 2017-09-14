@@ -25,7 +25,7 @@ function startMove(obj,attr,target){ //当面临多个对象时，运动框架�
         else{
             if(attr=='opacity'){
                 obj.style.opacity=(cur+speed)/100;
-                document.getElementById('txt1').value=obj.style.opacity;//这行代码是测试用的
+                //document.getElementById('txt1').value=obj.style.opacity;//这行代码是测试用的
             }
             else{
                 obj.style[attr]=cur+speed+'px';
@@ -41,7 +41,7 @@ function getStyle(obj,name){//构造一个函数，取非行间样式,也能取�
         return (obj.currentStyle[name]);
     }
     else{
-        return (getComputedStyle(obj,false)[name])
+        return (getComputedStyle(obj,false)[name]);
     }
 }
 
